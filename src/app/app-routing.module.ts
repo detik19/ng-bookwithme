@@ -12,7 +12,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: RentalComponent
+        loadChildren: './rental/rental.module#RentalModule'
       }
     ]
  },

@@ -12,7 +12,6 @@ import { BasicLayoutComponent } from './common/basic-layout/basic-layout.compone
   declarations: [
     AppComponent,
     HeaderComponent,
-    RentalComponent,
     BasicLayoutComponent
   ],
   imports: [
