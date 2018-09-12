@@ -1,5 +1,6 @@
 import { Rental } from './../models/rental.interface';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class RentalService {
@@ -64,4 +65,20 @@ export class RentalService {
     return this.rentals;
   }
 
+  getRentals(): Observable<any> {
+    const rentalObservable = new Observable( (observer) => {
+      setTimeout(() => {
+        observer.next(this.rentals);
+      }, 1000);
+
+      setTimeout(() => {
+        observer.error('im error');
+      }, 2000);
+
+      setTimeout(() => {
+        observer.complete();
+      }, 3000);
+    });
+    return rentalObservable;
+  }
 }

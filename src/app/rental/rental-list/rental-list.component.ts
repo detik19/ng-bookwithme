@@ -14,7 +14,20 @@ export class RentalListComponent implements OnInit {
   constructor(private rentalService: RentalService) { }
 
   ngOnInit() {
-    this.rentals = this.rentalService.loadAll();
+   //this.rentals = this.rentalService.loadAll();
+
+   this.rentalService.getRentals()
+   .subscribe(
+     (data) => {
+      this.rentals = data;
+    },
+    (error) => {
+      console.log(error);
+    },
+    () => {
+      console.log('im complete');
+    }
+   );
   }
 
 }
