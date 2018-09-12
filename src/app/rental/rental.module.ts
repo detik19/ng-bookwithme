@@ -5,6 +5,7 @@ import { RentalListComponent } from './rental-list/rental-list.component';
 import { RentalRoutingModule } from './rental-routing.module';
 import { RentalListItemComponent } from './rental-list-item/rental-list-item.component';
 import { RentalService } from '../services/rental.service';
+import { RentalDetailComponent } from './rental-detail/rental-detail.component';
 
 @NgModule({
   imports: [
@@ -12,6 +13,6 @@ import { RentalService } from '../services/rental.service';
     RentalRoutingModule
   ],
   providers: [RentalService],
-  declarations: [RentalListComponent, RentalComponent, RentalListItemComponent]
+  declarations: [RentalListComponent, RentalComponent, RentalListItemComponent, RentalDetailComponent]
 })
 export class RentalModule { }
