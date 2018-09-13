@@ -1,6 +1,9 @@
 'use strict';
 const config    = require('../config');
 const express   = require('express');
+const bodyParser = require('body-parser');
+const compress = require('compression');
+
 const path      = require('path');
 /**
  * Initialize local variables
@@ -30,6 +33,20 @@ module.exports.initLocalVariables = function (app) {
  * Initialize application middleware
  */
 module.exports.initMiddleware = function (app) {
+    // Should be placed before express.static
+    app.use(compress({
+      filter: function (req, res) {
+        return (/json|text|javascript|css|font|svg/).test(res.getHeader('Content-Type'));
+      },
+      level: 9
+    }));
+
+  // Request body parsing middleware should be above methodOverride
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
+  app.use(bodyParser.json());
+
 }
 
 /**
@@ -55,6 +72,10 @@ module.exports.init = function (db) {
     
     // Initialize local variables
     this.initLocalVariables(app);
+
+    // Initialize Express middleware
+    this.initMiddleware(app);
+
     // Initialize Modules configuration
     this.initModulesConfiguration(app);
     

@@ -4,7 +4,7 @@ const glob = require('glob');
 const fs = require('fs');
 const path = require('path');
 
-let getGlobbedPaths = function (globPatterns, excludes) {
+let getGlobbedPaths =  (globPatterns, excludes) => {
   // URL paths regex
   var urlRegex = new RegExp('^(?:[a-z]+:)?\/\/', 'i');
 
@@ -94,13 +94,13 @@ let initGlobalConfig = function () {
 
 
   // Get the default config
-  var defaultConfig = require(path.join(process.cwd(), '/server/config/env/default'));
+  let defaultConfig = require(path.join(process.cwd(), '/server/config/env/default'));
 
   // Get the current config
-  var environmentConfig = require(path.join(process.cwd(), '/server/config/env/', process.env.NODE_ENV)) || {};
+  let environmentConfig = require(path.join(process.cwd(), '/server/config/env/', process.env.NODE_ENV)) || {};
 
   // Merge config files
-  var config = _.merge(defaultConfig, environmentConfig);
+  let config = _.merge(defaultConfig, environmentConfig);
   // Initialize global globbed files
   initGlobalConfigFiles(config, assets);
   // console.log(assets);
