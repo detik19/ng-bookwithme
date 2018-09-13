@@ -2,7 +2,18 @@
 
 const mongoose = require('mongoose');
 const config = require('../config');
+const path = require('path');
 
+// Load the mongoose models
+module.exports.loadModels = function (callback) {
+    // Globbing model files
+    config.files.server.models.forEach(function (modelPath) {
+      require(path.resolve(modelPath));
+    });
+  
+    if (callback) callback();
+  };
+  
 
 module.exports.connect = function (callback) {
     console.log('1a');

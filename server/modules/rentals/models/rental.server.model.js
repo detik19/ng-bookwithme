@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const rentalSchema = new Schema({
     title: { 
-        type: string, 
+        type: String, 
         required: true,
         max: [128, 'too long']
     },

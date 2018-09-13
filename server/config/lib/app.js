@@ -1,16 +1,25 @@
 'use strict';
 
-const express = require('./express');
-const mongooseService = require('./mongoose')
-const config = require('../config');
+const express           = require('./express');
+const mongooseService   = require('./mongoose')
+const config            = require('../config');
+const seed              = require('./mongo-seed');
+
+
+function seedDB() {
+    if (config.seedDB && config.seedDB.seed) {
+      console.log(chalk.bold.red('Warning:  Database seeding is turned on'));
+      seed.start();
+    }
+  }
 
 module.exports.init = function init(callback) {
-    console.log('1');
 
     mongooseService.connect(
         (db) => {
+            mongooseService.loadModels(seedDB);
+
             let app = express.init(db);
-            console.log('2');
 
             if (callback){
                 callback(app, db, config);
