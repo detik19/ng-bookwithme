@@ -1,98 +1,90 @@
 import { Rental } from './../models/rental.interface';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import {HttpClient, HttpResponse} from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { RestService } from './rest.service';
 
 @Injectable()
-export class RentalService {
-  rentals: Rental[] = [
-    {
-      id: 1,
-      title: 'Central Apartemen',
-      city: 'New York',
-      street: 'Times Square',
-      category: 'apartemen',
-      image: 'http://via.placelholder.com/350x250',
-      bedrooms: 3,
-      description: 'Very nice apartemen',
-      dailyRate: 1,
-      shared: false,
-      createdAt: new Date()
-    },
-    {
-      id: 2,
-      title: 'lala',
-      city: 'lala',
-      street: 'jalan raya',
-      category: '',
-      image: 'http://via.placelholder.com/350x250',
-      bedrooms: 1,
-      description: 'Very nice apartemen',
-      dailyRate: 1,
-      shared: false,
-      createdAt: new Date()
-    },
-    {
-      id: 3,
-      title: 'lala',
-      city: 'lala',
-      street: 'jalan raya',
-      category: '',
-      image: 'http://via.placelholder.com/350x250',
-      bedrooms: 1,
-      description: 'Very nice apartemen',
-      dailyRate: 1,
-      shared: false,
-      createdAt: new Date()
-    },
-    {
-      id: 4,
-      title: 'lala',
-      city: 'lala',
-      street: 'jalan raya',
-      category: '',
-      image: 'http://via.placelholder.com/350x250',
-      bedrooms: 1,
-      description: 'Very nice apartemen',
-      dailyRate: 1,
-      shared: false,
-      createdAt: new Date()
-    }
-  ];
+export class RentalService extends RestService {
 
-  constructor() { }
+  // rentals: Rental[] = [
+  //   {
+  //     id: 1,
+  //     title: 'Central Apartemen',
+  //     city: 'New York',
+  //     street: 'Times Square',
+  //     category: 'apartemen',
+  //     image: 'http://via.placelholder.com/350x250',
+  //     bedrooms: 3,
+  //     description: 'Very nice apartemen',
+  //     dailyRate: 1,
+  //     shared: false,
+  //     createdAt: new Date()
+  //   },
+  //   {
+  //     id: 2,
+  //     title: 'lala',
+  //     city: 'lala',
+  //     street: 'jalan raya',
+  //     category: '',
+  //     image: 'http://via.placelholder.com/350x250',
+  //     bedrooms: 1,
+  //     description: 'Very nice apartemen',
+  //     dailyRate: 1,
+  //     shared: false,
+  //     createdAt: new Date()
+  //   },
+  //   {
+  //     id: 3,
+  //     title: 'lala',
+  //     city: 'lala',
+  //     street: 'jalan raya',
+  //     category: '',
+  //     image: 'http://via.placelholder.com/350x250',
+  //     bedrooms: 1,
+  //     description: 'Very nice apartemen',
+  //     dailyRate: 1,
+  //     shared: false,
+  //     createdAt: new Date()
+  //   },
+  //   {
+  //     id: 4,
+  //     title: 'lala',
+  //     city: 'lala',
+  //     street: 'jalan raya',
+  //     category: '',
+  //     image: 'http://via.placelholder.com/350x250',
+  //     bedrooms: 1,
+  //     description: 'Very nice apartemen',
+  //     dailyRate: 1,
+  //     shared: false,
+  //     createdAt: new Date()
+  //   }
+  // ];
 
-  loadAll(): Rental[] {
-    return this.rentals;
+  private resourceUrl = 'http://127.0.0.1:3001/' + 'rentals';
+
+  constructor(protected http: HttpClient) {
+    super(http);
   }
 
-  getRentalById(rentalId: number): Observable<Rental> {
-    const rentalObservable = new Observable(
-      (observer) => {
-        setTimeout(() => {
-          const foundRental = this.rentals.find((rental) => {
-            return rental.id === rentalId;
-          });
-          observer.next(foundRental);
-        }, 500);
-      }
-    );
-    return rentalObservable;
+  // loadAll(): Rental[] {
+  //   return this.rentals;
+  // }
+
+  getRentalById(rentalId: string): Observable<HttpResponse<Rental>> {
+    return this.http.get<Rental>('/api/rentals/' + rentalId, {observe: 'response'});
   }
 
-  getRentals(): Observable<any> {
-    const rentalObservable = new Observable( (observer) => {
-      setTimeout(() => {
-        observer.next(this.rentals);
-      }, 1000);
-
-      // setTimeout(() => {
-      //   //observer.error('im error');
-      // }, 2000);
-
-      setTimeout(() => {
-        observer.complete();
-      }, 3000);
-    });
-    return rentalObservable;
+  getRentals(): Observable<HttpResponse<any>> {
+    return this.http.get<Rental[]>('/api/rentals', {observe: 'response'})
+      .pipe(
+        map( (response: HttpResponse<any>) => {
+           return this.convertArrayResponse(response);
+            // const json = response.body;
+            // return json;
+          }
+      ));
   }
 }

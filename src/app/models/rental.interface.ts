@@ -1,5 +1,5 @@
 export interface Rental {
-    id?: number;
+    _id?: string;
     title?: string;
     city?: string;
     street?: string;
