@@ -1,5 +1,21 @@
-<div *ngIf="rentalSelected">
-    <p>
-        {{rentalSelected.city}}
-    </p>
-</div>
+<section id="rentalDetails" *ngIf="rentalSelected">
+    <div class="upper-section">
+        <div class="row">
+            <div class="col-md-6">
+                <img [src]="rentalSelected.image" alt="">
+            </div>
+            <div class="col-md-6">
+                <img [src]="rentalSelected.image">
+            </div>
+        </div>
+    </div>
+    <div class="details-section">
+        <div class="row">
+            <div class="col-md-8">
+                <h2 class="rental-type {{rentalSelected.category}}">
+                    {{rentalSelected.shared}} {{rentalSelected.category}}
+                </h2>
+            </div>
+        </div>
+    </div>
+</section>
