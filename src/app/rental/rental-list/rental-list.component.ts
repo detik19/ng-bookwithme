@@ -19,7 +19,8 @@ export class RentalListComponent implements OnInit {
    this.rentalService.getRentals()
    .subscribe(
      (data) => {
-      this.rentals = data;
+       console.log(data);
+       this.rentals = data.body;
     },
     (error) => {
       console.log(error);
