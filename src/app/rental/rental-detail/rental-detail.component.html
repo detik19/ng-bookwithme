@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-8">
                 <h2 class="rental-type {{rentalSelected.category}}">
-                    {{rentalSelected.shared}} {{rentalSelected.category}}
+                    {{rentalSelected.shared ? 'Shared':'Whole' }} {{rentalSelected.category}}
                 </h2>
                 <h1 class="rental-title">{{rentalSelected.title}}</h1>
                 <h2 class="rental-city">{{rentalSelected.city}}</h2>
