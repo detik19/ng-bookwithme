@@ -6,11 +6,13 @@ import { RentalRoutingModule } from './rental-routing.module';
 import { RentalListItemComponent } from './rental-list-item/rental-list-item.component';
 import { RentalService } from '../services/rental.service';
 import { RentalDetailComponent } from './rental-detail/rental-detail.component';
+import { MapModule } from '../common/map/map.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    RentalRoutingModule
+    RentalRoutingModule,
+    MapModule
   ],
   providers: [RentalService],
   declarations: [RentalListComponent, RentalComponent, RentalListItemComponent, RentalDetailComponent]
