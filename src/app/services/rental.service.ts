@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 import { RestService } from './rest.service';
 
 @Injectable()
-export class RentalService extends RestService {
+export class RentalService {
 
   // rentals: Rental[] = [
   //   {
@@ -63,10 +63,9 @@ export class RentalService extends RestService {
   //   }
   // ];
 
-  private resourceUrl = 'http://127.0.0.1:3001/' + 'rentals';
+  private resourceUrl = 'http://127.0.0.1:3001/' + 'api/rentals';
 
   constructor(protected http: HttpClient) {
-    super(http);
   }
 
   // loadAll(): Rental[] {
@@ -78,13 +77,8 @@ export class RentalService extends RestService {
   }
 
   getRentals(): Observable<HttpResponse<any>> {
-    return this.http.get<Rental[]>('/api/rentals', {observe: 'response'})
-      .pipe(
-        map( (response: HttpResponse<any>) => {
-           return this.convertArrayResponse(response);
-            // const json = response.body;
-            // return json;
-          }
-      ));
+    return this.http.get('/api/rentals', {observe: 'response'});
+   // return this.http.get(this.resourceUrl, {observe: 'response'});
+
   }
 }

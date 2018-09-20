@@ -5,7 +5,7 @@
                 <img [src]="rentalSelected.image" alt="">
             </div>
             <div class="col-md-6">
-                <app-map></app-map>
+                <app-map [location]="rentalSelected.city +', '+ rentalSelected.street"></app-map>
             </div>
         </div>
     </div>

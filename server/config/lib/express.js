@@ -3,7 +3,7 @@ const config    = require('../config');
 const express   = require('express');
 const bodyParser = require('body-parser');
 const compress = require('compression');
-
+const cors      = require('cors');
 const path      = require('path');
 /**
  * Initialize local variables
@@ -46,7 +46,7 @@ module.exports.initMiddleware = function (app) {
     extended: true
   }));
   app.use(bodyParser.json());
-
+  app.use(cors());
 }
 
 /**
@@ -68,7 +68,7 @@ module.exports.initModulesServerRoutes = function (app) {
   };
   
 module.exports.init = function (db) {
-    const app = express();
+    let app = express();
     
     // Initialize local variables
     this.initLocalVariables(app);

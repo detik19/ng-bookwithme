@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-map',
@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapComponent implements OnInit {
   title = 'My first AGM project';
+  @Input() location: string;
+
   lat = 51.678418;
   lng = 7.809007;
 
