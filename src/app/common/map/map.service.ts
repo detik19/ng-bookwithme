@@ -1,3 +1,4 @@
+import { GeoLocationModel } from './../../models/geolocation.model';
 import { GeoLocation } from './../../models/geolocation.interface';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -8,19 +9,22 @@ export class MapService {
   constructor() { }
 
   public geoCodeLocation(location: string): Observable<GeoLocation> {
-    this.geoCoder = new (<any>window).google.maps.GeoCoder();
+    this.geoCoder = new (<any>window).google.maps.Geocoder();
 
     return new Observable((observer) => {
-      this.geoCoder.getcode({address: location},
+      this.geoCoder.geocode({address: location},
         (result, status) => {
           if (status === 'OK') {
             const geometry = result[0].geometry.location;
-            const geo: GeoLocation;
+            const geo: GeoLocation = new GeoLocationModel();
             geo.lat = geometry.lat();
             geo.lng = geometry.lng();
             observer.next(geo);
+          } else {
+            observer.error('Location could not be geocoded');
           }
       });
     });
   }
 }
+

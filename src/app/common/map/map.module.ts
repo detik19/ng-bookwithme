@@ -7,7 +7,7 @@ import { AgmCoreModule } from '@agm/core';
   imports: [
     CommonModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyC9qS8frAJVqMjW3CQpSXrK3-hK87nLCW4'
+      apiKey: ''
     })
   ],
   exports: [
