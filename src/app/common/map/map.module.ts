@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { MapService } from './map.service';
 import { MapComponent } from './map.component';
 import { NgModule } from '@angular/core';
@@ -7,7 +8,7 @@ import { AgmCoreModule } from '@agm/core';
   imports: [
     CommonModule,
     AgmCoreModule.forRoot({
-      apiKey: ''
+      apiKey: environment.google.map
     })
   ],
   exports: [
