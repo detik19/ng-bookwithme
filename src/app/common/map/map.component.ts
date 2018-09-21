@@ -23,9 +23,8 @@ export class MapComponent implements OnInit {
   mapReadyHandler() {
     this.mapsevice.getGeoLocation(this.location)
     .subscribe((geoLocation: GeoLocation) => {
-      this.lat = geoLocation.lat;
-      this.lng = geoLocation.lng;
-      console.log(this.lat);
+      this.lat = +geoLocation.lat;
+      this.lng = +geoLocation.lng;
       this.ref.detectChanges();
     },
     (error) => {
