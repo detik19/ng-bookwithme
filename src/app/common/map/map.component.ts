@@ -1,5 +1,5 @@
 import { GeoLocation } from './../../models/geolocation.interface';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { MapService } from './map.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class MapComponent implements OnInit {
   lat: number; // = 51.678418;
   lng: number; // = 7.809007;
 
-  constructor(private mapsevice: MapService) { }
+  constructor(private mapsevice: MapService, private ref: ChangeDetectorRef) { }
 
   ngOnInit() {
 
@@ -25,6 +25,7 @@ export class MapComponent implements OnInit {
     .subscribe((geoLocation: GeoLocation) => {
       this.lat = +geoLocation.lat;
       this.lng = +geoLocation.lng;
+      this.ref.detectChanges();
     },
     (error) => {
       console.log(error);
