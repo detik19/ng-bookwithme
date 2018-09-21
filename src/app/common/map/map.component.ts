@@ -10,9 +10,9 @@ import { MapService } from './map.service';
 export class MapComponent implements OnInit {
   title = 'My first AGM project';
   @Input() location: string;
-
-  lat; // = 51.678418;
-  lng; // = 7.809007;
+  isPositionError = false;
+  lat: number; // = 51.678418;
+  lng: number; // = 7.809007;
 
   constructor(private mapsevice: MapService) { }
 
@@ -21,11 +21,14 @@ export class MapComponent implements OnInit {
   }
 
   mapReadyHandler() {
-    this.mapsevice.geoCodeLocation(this.location)
+    this.mapsevice.getGeoLocation(this.location)
     .subscribe((geoLocation: GeoLocation) => {
-      this.lat = geoLocation.lat;
-      this.lng = geoLocation.lng;
-      console.log(this.lat);
+      this.lat = +geoLocation.lat;
+      this.lng = +geoLocation.lng;
+    },
+    (error) => {
+      console.log(error);
+      this.isPositionError = true;
     });
   }
 
