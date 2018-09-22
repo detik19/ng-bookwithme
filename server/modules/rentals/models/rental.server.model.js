@@ -1,3 +1,5 @@
+'use strict';
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -34,6 +36,10 @@ const rentalSchema = new Schema({
     createdAt: {
         type: Date,
         default: Date.now
+    },
+    _user: {
+        type: Schema.ObjectId,
+        ref: 'User'
     }
 
 });
