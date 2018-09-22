@@ -25,6 +25,7 @@ export class MapComponent implements OnInit {
     .subscribe((geoLocation: GeoLocation) => {
       this.lat = geoLocation.lat;
       this.lng = geoLocation.lng;
+      console.log(geoLocation);
       this.ref.detectChanges();
     },
     (error) => {

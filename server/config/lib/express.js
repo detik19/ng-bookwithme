@@ -46,7 +46,6 @@ module.exports.initMiddleware = function (app) {
     extended: true
   }));
   app.use(bodyParser.json());
-  app.use(cors());
 }
 
 /**
