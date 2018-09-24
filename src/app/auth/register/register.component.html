@@ -3,25 +3,34 @@
     <div class="row">
       <div class="col-md-5">
         <h1 class="page-title">Register</h1>
-        <form action="">
+        <form #f="ngForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <label for="username">Username</label>
             <input [(ngModel)]="user.username" type="text" 
-              name="username" class="form-control" id="username">
-          </div>
+              name="username" class="form-control" id="username" 
+              #username="ngModel" required>
+              <!-- <div *ngIf="username.invalid && (username.dirty || username.touched)"
+              class="alert alert-danger">
+                <div *ngIf="username.errors.required">Username is required</div>
+
+              </div> -->
+            </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input [(ngModel)]="user.email" type="email" name="email" class="form-control" id="email">
+            <input [(ngModel)]="user.email" type="email" name="email" 
+                    class="form-control" id="email" required>
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input [(ngModel)]="user.password" type="password" class="form-control" id="password">
+            <input [(ngModel)]="user.password" type="password" 
+                  class="form-control" id="password" name="password" required>
           </div>
           <div class="form-group">
             <label for="passwordConf">Password Confirmation</label>
-            <input type="password" class="form-control" name="passwordConf" id="passwordConf">
+            <input [(ngModel)]="passwordConf" type="password" class="form-control" 
+                  name="passwordConf" id="passwordConf" required>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button [disabled]="!f.form.valid" type="submit" class="btn btn-primary">Submit</button>
         </form>
       </div>
       <div class="col-md-6 ml-auto">
