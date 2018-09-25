@@ -1,3 +1,32 @@
-<p>
-  login works!
-</p>
+<section id="login">
+  <div class="bwm-form">
+    <div class="row">
+      <div class="col-md-5">
+        <h1>Login</h1>
+        <form action="" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          <div class="form-group">
+              <label for="username">Username</label>
+              <input type="username" class="form-control" id="username"
+              formControlName="username">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" 
+            class="form-control" placeholder="password" 
+            aria-describedby="password" formControlName="password">
+            <!-- <small id="password" class="text-muted">oassword</small> -->
+          </div>
+          <button type="submit" 
+            [disabled]="!loginForm.valid" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      <div class="col-md-6 ml-auto">
+        <div class="image-container">
+          <h2 class="catchphrase">
+            Hundreds of awesome places in reach of few clicks
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
