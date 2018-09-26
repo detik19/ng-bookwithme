@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
       (response) => {console.log(response); },
       (err) => { console.log(err); },
       () => {
-        this.router.navigate(['/rentals');
+        this.router.navigate(['/rentals']);
       }
     );
   }
