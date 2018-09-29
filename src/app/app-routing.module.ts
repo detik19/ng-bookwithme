@@ -13,6 +13,10 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: './rental/rental.module#RentalModule'
+      },
+      {
+        path: '',
+        loadChildren: './auth/auth.module#AuthModule'
       }
     ]
  },

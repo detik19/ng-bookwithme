@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RentalService } from '../../services/rental.service';
 import { Rental } from '../../models/rental.interface';
 
@@ -7,10 +8,11 @@ import { Rental } from '../../models/rental.interface';
   templateUrl: './rental-list.component.html',
   styleUrls: ['./rental-list.component.scss']
 })
-export class RentalListComponent implements OnInit {
+export class RentalListComponent implements OnInit, OnDestroy {
 
   rentals: Rental[];
-
+  rentalsObservable: any;
+  daterange;
   constructor(private rentalService: RentalService) { }
 
   ngOnInit() {
@@ -31,4 +33,7 @@ export class RentalListComponent implements OnInit {
    );
   }
 
+  ngOnDestroy() {
+    // this.rentalService.getRentals().
+  }
 }
