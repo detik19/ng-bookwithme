@@ -1,3 +1,4 @@
+import { AuthGuard } from './../guard/auth.guard';
 import { RentalDetailComponent } from './rental-detail/rental-detail.component';
 import { RentalListComponent } from './rental-list/rental-list.component';
 import { NgModule } from '@angular/core';
@@ -13,7 +14,9 @@ const routes: Routes = [
         path: '', component: RentalListComponent,
       },
       {
-        path: ':rentalid', component: RentalDetailComponent
+        path: ':rentalid',
+        component: RentalDetailComponent,
+        canActivate: [AuthGuard]
       }
     ]
   },

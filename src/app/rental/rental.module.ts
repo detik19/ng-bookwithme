@@ -7,14 +7,16 @@ import { RentalListItemComponent } from './rental-list-item/rental-list-item.com
 import { RentalService } from '../services/rental.service';
 import { RentalDetailComponent } from './rental-detail/rental-detail.component';
 import { MapModule } from '../common/map/map.module';
-
+import { Daterangepicker } from 'ng2-daterangepicker';
+import { RentalDetailBookingComponent } from './rental-detail-booking/rental-detail-booking.component';
 @NgModule({
   imports: [
     CommonModule,
     RentalRoutingModule,
-    MapModule
+    MapModule,
+    Daterangepicker
   ],
   providers: [RentalService],
-  declarations: [RentalListComponent, RentalComponent, RentalListItemComponent, RentalDetailComponent]
+  declarations: [RentalListComponent, RentalComponent, RentalListItemComponent, RentalDetailComponent, RentalDetailBookingComponent]
 })
 export class RentalModule { }
